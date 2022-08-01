@@ -17,7 +17,8 @@ const sql=mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
-    port:3306
+    port:3306,
+    database: "vp-virtual"
 });
 // sql.query("use vp-virtual");
 
@@ -43,8 +44,22 @@ app.get('/login', function (req, res) {
 app.get('/inserir', function (req, res) {
     res.render('inserir');
 });
+
 app.post("/controllerForm", urlEncodeParser, function (req, res){
-    console.log(req.body.name);
-})
+    sql.query(
+        "INSERT INTO produtos values (?,?,?,?)",
+        [
+            req.body.id,
+            req.body.category,
+            req.body.name,            
+            req.body.preco
+        ]);
+    res.render('controllerForm',{
+        categoria:req.body.category,
+        nome:req.body.name,
+        preco:req.body.preco
+    });
+
+});
 
 module.exports = app;

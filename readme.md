@@ -3,7 +3,8 @@
 ### Participante: 
 |name | email | occupation | course |
 | -------- | -------- | -------- |-------- | 
-|Isaque Menezes| isaque-menezes@hotmail.com| developer back-end| Sistemas de Informação|
+|Isaque Menezes| isaque-menezes@hotmail.com| branch back-end| Sistemas de Informação|
+|Enzo Gabriel| enzo@hotmail.com| branch front-end| Engenharia da Computação|
 
 ## Linguagens, libs e outros utilizadas :books:
 

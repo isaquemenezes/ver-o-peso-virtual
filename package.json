@@ -9,8 +9,10 @@
   "author": "Isaque Menezes",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6"
+    "express-handlebars": "^6.0.6",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

@@ -1,0 +1,34 @@
+<div class="__table">
+<table>
+    <caption>SELECT TABLE USER</caption>
+    <thead>
+        <tr>
+            <td>Action</td>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Age</td>
+        </tr>
+    </thead>   
+
+    <tbody>
+        {{#data}}
+        <tr>
+            <td>
+                <a href="deletar/{{id}}" class="deletar"><img src="/images/iconmonstr-x-mark-5.png" alt="excluir"/> </a>
+                <a href="update/{{id}}"><img src="/images/update.png" alt="update"/> </a>
+            </td>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{age}}</td>
+        </tr>
+        {{/data}}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Dev Isaque Menezes </td>
+        </tr>
+    </tfoot>
+
+</table>
+</div>

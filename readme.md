@@ -55,3 +55,9 @@
 
 ### Templates handlebars
 `npm install --save express-handlebars`
+
+### MYSQL db 
+`npm install --save mysql2` 
+
+### camada de aplicação do dados 
+`npm install --save body-parser`

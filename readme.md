@@ -7,9 +7,10 @@
 |Enzo Gabriel| enzo@hotmail.com| branch front-end| Engenharia da Computação|
 
 ## Linguagens, libs e outros utilizadas :books:
-
+- [WINDOWS 10](https://www.microsoft.com/pt-br/windows/)
 - [VISUAL STUDIO CODE](https://code.visualstudio.com)
 - [GIT](https://git-scm.com)
+- [NODE JS](https://nodejs.org/en/)
 
 ### Customização commits 
 

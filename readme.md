@@ -1,6 +1,8 @@
 # Branch Back end
 # Ver O PESO Virtual
 
+<img src='./images/nodejs.jpg' />
+
 ### Participante: 
 |name | email | occupation | course |
 | -------- | -------- | -------- |-------- | 
@@ -10,6 +12,8 @@
 
 - [VISUAL STUDIO CODE](https://code.visualstudio.com)
 - [GIT](https://git-scm.com)
+- [NODEMON](https://www.npmjs.com/package/nodemon)
+- [EXPRESS](https://expressjs.com/)
 
 ### Customização commits 
 
@@ -47,7 +51,6 @@
 `npm install express`
 
 ### Reiniciando automaticamente o aplicativo de nó com nodemom quando são detectadas alterações de arquivo no diretório.
-- https://www.npmjs.com/package/nodemon
 `npm install --save-dev nodemon`
 
 ### Templates handlebars

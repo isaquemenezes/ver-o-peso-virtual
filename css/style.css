@@ -1,0 +1,141 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    list-style: none;
+    text-decoration: none;
+
+}
+body {
+    width: 120vh;
+}
+
+h1 {
+    color: darkorange;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+}
+
+img {
+    width: 10%;
+}
+
+.__table {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid #0005d3 ;
+
+}
+table {
+    position: relative;
+    width: 50%;
+    text-align: center;
+    border-color: aliceblue;
+}
+
+table thead tr:first-child {
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+}
+
+table td {
+    width: 10%;
+}
+
+tfoot tr td {
+    position: absolute;
+    width: 100%; 
+    text-align: center;
+    background: yellow;
+    margin-top: 1rem;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    background: #0005d3;
+    
+}
+nav {
+    width: 80%;
+    background: #fff;
+}
+
+nav ul a {
+    color: blueviolet;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    
+}
+
+nav ul a:hover {
+    color: rebeccapurple;
+} 
+nav ul{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.__form {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: auto;
+    border:2px solid #333;
+    border-radius: .5rem;
+    margin: auto;
+}
+
+.__form form {
+    width: 550px;
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    
+}
+
+.__form form input {
+    width: 100%;
+    margin: .5rem;
+    border-radius: .5rem;
+    height: 40px;
+    border:1px solid yellowgreen
+}
+
+.__form form input[type="submit"] {
+   
+    font-size: 15px;
+    width: 20%;
+    color: #333;
+    background: transparent;
+    cursor: pointer;
+    border:2px solid #0005d3;
+}
+
+.__form form input[type="submit"]:hover {
+    transition: 1s ease-out;
+    background: #255;
+    cursor: pointer;
+    color: #fff;
+}
+
+
+
+
+
+
+
+

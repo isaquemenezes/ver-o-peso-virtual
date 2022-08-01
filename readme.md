@@ -32,3 +32,23 @@
 9. CI: Ajuste nas configurações do CI
 
 10. BUILD: Ajuste nas configurações de build.
+
+# Como rodar o project baixado
+
+## Instalar todas as dependêcias indicadas no package.json
+`npm install`
+
+## Rodar o project
+## Execute o server
+`nodemon server.js`
+
+## Depenciais do Project:
+### Depência para gerenciar rodas, requisições, url entre outras. express
+`npm install express`
+
+### Reiniciando automaticamente o aplicativo de nó com nodemom quando são detectadas alterações de arquivo no diretório.
+- https://www.npmjs.com/package/nodemon
+`npm install --save-dev nodemon`
+
+### Templates handlebars
+`npm install --save express-handlebars`

@@ -1,0 +1,18 @@
+{
+  "name": "development-nodejs-c",
+  "version": "1.0.0",
+  "description": "Treinamento em Node Js auxilio videos do canal Celke",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaque Menezes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

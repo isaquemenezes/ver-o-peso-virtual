@@ -46,19 +46,44 @@ app.get('/inserir', function (req, res) {
 });
 
 app.post("/controllerForm", urlEncodeParser, function (req, res){
-    sql.query(
-        "INSERT INTO produtos values (?,?,?,?)",
-        [
-            req.body.id,
-            req.body.category,
-            req.body.name,            
-            req.body.preco
-        ]);
+    sql.query( "INSERT INTO produtos values (?,?,?,?)",
+                [
+                    req.body.id,
+                    req.body.category,
+                    req.body.name,            
+                    req.body.preco
+                ]
+            );
     res.render('controllerForm',{
         categoria:req.body.category,
         nome:req.body.name,
         preco:req.body.preco
     });
+
+});
+
+//Rota Select
+app.get('/select/:id?', function(req, res) {
+    
+    // Casso tenha o id passado
+    if (req.params.id) 
+    {
+        sql.query("select * from produtos where id=?",
+                    [req.params.id] ,
+                    function(results)
+                    {
+                        res.render('select', { data:results });
+                    }
+            );
+       
+    } else {
+        sql.query("select * from produtos order by id asc", 
+                    function(results)
+                    {
+                        res.render('select', { data:results });
+                    }
+            );
+    }
 
 });
 

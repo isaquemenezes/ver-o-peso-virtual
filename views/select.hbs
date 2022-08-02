@@ -1,12 +1,14 @@
 <div class="__table">
 <table>
-    <caption>SELECT TABLE USER</caption>
+    <caption>Seleção de Produtos Cadastrados</caption>
+
     <thead>
         <tr>
-            <td>Action</td>
+            <td>Opções</td>
             <td>Id</td>
-            <td>Name</td>
-            <td>Age</td>
+            <td>Nome</td>
+            <td>Categoria</td>
+            <td>Preco</td>
         </tr>
     </thead>   
 
@@ -14,12 +16,13 @@
         {{#data}}
         <tr>
             <td>
-                <a href="deletar/{{id}}" class="deletar"><img src="/images/iconmonstr-x-mark-5.png" alt="excluir"/> </a>
-                <a href="update/{{id}}"><img src="/images/update.png" alt="update"/> </a>
+                <a href="deletar/{{ id }}" class="deletar">Del</a> | 
+                <a href="update/{{ id }}">Update</a>
             </td>
-            <td>{{id}}</td>
-            <td>{{name}}</td>
-            <td>{{age}}</td>
+            <td>{{ id }}</td>
+            <td>{{ nome }}</td>
+            <td>{{ categoria }}</td>
+            <td>{{ preco }}</td>
         </tr>
         {{/data}}
     </tbody>

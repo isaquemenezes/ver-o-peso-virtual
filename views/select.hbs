@@ -1,3 +1,14 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="./">Home</a></li>
+            <li><a href="./inserir">Inserir</a></li>
+            <li><a href="./select">Select</a></li>
+            <li><a href="./login">Entrar</a></li>
+        </ul>
+    </nav>
+</header>
+
 <div class="__table">
 <table>
     <caption>Seleção de Produtos Cadastrados</caption>
@@ -16,7 +27,7 @@
         {{#data}}
         <tr>
             <td>
-                <a href="deletar/{{ id }}" class="deletar">Del</a> | 
+                <a href="del/{{ id }}" class="deletar">Del</a> | 
                 <a href="update/{{ id }}">Update</a>
             </td>
             <td>{{ id }}</td>

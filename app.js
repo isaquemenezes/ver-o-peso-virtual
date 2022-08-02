@@ -70,7 +70,7 @@ app.get('/select/:id?', function(req, res) {
     {
         sql.query("select * from produtos where id=?",
                     [req.params.id] ,
-                    function(results)
+                    function(err,results,filelds)
                     {
                         res.render('select', { data:results });
                     }
@@ -78,13 +78,21 @@ app.get('/select/:id?', function(req, res) {
        
     } else {
         sql.query("select * from produtos order by id asc", 
-                    function(results)
+                    function(err,results,filelds)
                     {
                         res.render('select', { data:results });
                     }
             );
     }
 
+});
+
+//Rota del
+app.get('/del/:id', function(req,res){
+    sql.query("delete from produtos where id=?",
+                [req.params.id]
+            );
+    res.render('del');
 });
 
 module.exports = app;

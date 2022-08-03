@@ -1,3 +1,4 @@
+{{!-- header  --}}
 <header>
     <nav>
         <ul>
@@ -9,15 +10,14 @@
     </nav>
 </header>
 
-
+{{!-- formulário produtos  --}}
 <div class="__form">
     <h1>Criar Um Novo Produtop</h1>
     <form action="/controllerForm" method="post">
-        
-        <input type="text" name="id" id="id" placeholder="Id:"><br>
-        
-        <select name="category" id="">
-            <option selected >Categoria</option>
+            
+        <label for="categoria">Escolha a Categoria</label>
+        <select name="category" id="categoria">
+            <option selected="">Categoria</option>
 
             <option value="fruta">Frutas</option>
             <option value="verdura">Verduras</option>
@@ -25,12 +25,10 @@
             <option value="comida tipica">Comida Típica</option>
             <option value="artesanato">Artesanato</option>
             <option value="outro">Outros</option>
-
         </select>
-        <input type="text" name="name" id="name" placeholder="Nome:"><br>
-        
-        <input type="text" name="preco" id="preco" placeholder="Preço:"><br>
 
+        <input type="text" name="name" id="name" placeholder="Nome:"><br>
+        <input type="text" name="preco" id="preco" placeholder="Preço:"><br>
         <input type="submit" name="btnSubmit" id="btnSubmit" Value="Gravar"><br>
     </form>
 </div>

@@ -95,4 +95,29 @@ app.get('/del/:id', function(req,res){
     res.render('del');
 });
 
+//Rota Update
+app.get('/edit/:id', urlEncodeParser, function(req,res){
+    sql.query("select * from produtos where id=?",
+            [req.params.id], function(err,results,filelds){
+                res.render('edit',{
+                    id:req.params.id,
+                    categoria:results[0].categoria,
+                    nome:results[0].nome,
+                    preco:results[0].preco
+
+                });
+            }
+
+    );
+});
+app.post('/controllerEdit', urlEncodeParser, function (req,res) {
+    sql.query("update produtos set categoria=?, nome=?, preco=? where id=?", [
+        req.body.category,
+        req.body.nome,
+        req.body.preco,
+        req.body.id
+    ]);
+    res.render('controllerEdit');
+});
+
 module.exports = app;

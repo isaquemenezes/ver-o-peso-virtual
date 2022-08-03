@@ -40,6 +40,11 @@ app.get('/login', function (req, res) {
     res.render('login');
 });
 
+//resgistrar-se
+app.get('/register', function (req, res) {
+    res.render('register');
+});
+
 // Criar Um Novo Registro
 app.get('/inserir', function (req, res) {
     res.render('inserir');

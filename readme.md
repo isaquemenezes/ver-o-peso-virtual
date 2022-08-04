@@ -5,6 +5,7 @@
 |name | email | occupation | course |
 | -------- | -------- | -------- |-------- | 
 |Isaque Menezes| isaque-menezes@hotmail.com| developer back-end| Sistemas de Informação|
+|Enzo Santos   | enzogabrielrocha29@gmail.com| developer front-end| Ciência da Computação|
 
 ## Linguagens, libs e outros utilizadas :books:
 

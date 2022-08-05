@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Barraca, noVerOPeso, TipoBarraca} from "../lib/modelos";
 import CartaoBarraca from "./tiles/barraca";
 import {Link} from "react-router-dom";
-import {TextField} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 
 type _Props = {};
 type _State = { termoBusca: string };
@@ -41,11 +41,13 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
       }
     ];
     return (
-        <div className="App">
-          <h1>Ver-o-Peso Virtual</h1>
-          <div>
+        <div>
+          <div style={{display: "flex", margin: "20px 40px", alignItems: "center"}}>
+            <Typography variant="h3" component="div" style={{display: "flex", flexGrow: 1}}>
+              Ver-o-Peso Virtual
+            </Typography>
             <Link to="/login">
-              <button>Sou feirante</button>
+              <Button variant="contained">Sou feirante</Button>
             </Link>
           </div>
           <TextField

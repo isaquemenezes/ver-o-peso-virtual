@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Barraca, noVerOPeso, TipoBarraca} from "../lib/modelos";
 import CartaoBarraca from "./tiles/barraca";
 import {Link} from "react-router-dom";
+import {TextField} from "@mui/material";
 
 type _Props = {};
 type _State = { termoBusca: string };
@@ -47,8 +48,10 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
               <button>Sou feirante</button>
             </Link>
           </div>
-          <input
-              placeholder="Pesquise uma barraca"
+          <TextField
+              style={{display: "flex", flex: "1", margin: "10px 20px"}}
+              label="Pesquisar barraca"
+              variant="outlined"
               onChange={(e) => this.setState({termoBusca: e.target.value})}
           />
           <div>

@@ -1,7 +1,8 @@
-import {ErrorMessage, Field, FieldArray, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import React from "react";
 import {Feirante} from "../../lib/modelos";
 import {withRouter, WithRouterProps} from "../../lib/withRouter";
+import Cabecalho from "../tiles/cabecalho";
 
 type _Props = { id: string | undefined };
 type _State = {};
@@ -20,6 +21,7 @@ export default withRouter(FormularioFeirante);
 class Formulario extends React.Component<_Props, _State> {
   render() {
     return <div>
+      <Cabecalho voltar titulo="Cadastrar feirante"/>
       <Formik<Feirante>
           initialValues={{
             nome: '',
@@ -53,7 +55,7 @@ class Formulario extends React.Component<_Props, _State> {
               <ErrorMessage name="email" component="div"/>
               <Field type="email" name="email"/>
               <ErrorMessage name="email" component="div"/>
-              <Field name="contato" />
+              <Field name="contato"/>
               <button type="submit" disabled={isSubmitting}>
                 Enviar
               </button>

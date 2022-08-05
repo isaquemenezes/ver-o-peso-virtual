@@ -40,6 +40,17 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
         tipos: [TipoBarraca.comidas],
       }
     ];
+    const barracasFiltradas = barracas
+        .filter((barraca) => barraca.nome.toLowerCase()
+            .includes(this.state.termoBusca.toLowerCase()));
+
+    const textoPesquisa = (() => {
+      const contador = barracasFiltradas.length;
+      const prefixo = contador == 0 ? 'Nenhuma' : `${contador}`;
+      const sufixo = contador < 2 ? '' : 's';
+      return `${prefixo} barraca${sufixo} encontrada${sufixo}`;
+    })();
+
     return (
         <div>
           <div style={{display: "flex", margin: "20px 40px", alignItems: "center"}}>
@@ -56,9 +67,13 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
               variant="outlined"
               onChange={(e) => this.setState({termoBusca: e.target.value})}
           />
+          {this.state.termoBusca
+              ? <Typography
+                  style={{margin: "0 20px"}}
+                  component="div">{textoPesquisa}</Typography>
+              : null}
           <div>
-            {barracas
-                .filter((barraca) => barraca.nome.toLowerCase().includes(this.state.termoBusca.toLowerCase()))
+            {barracasFiltradas
                 .map((barraca) => <CartaoBarraca barraca={barraca}/>)}
           </div>
         </div>

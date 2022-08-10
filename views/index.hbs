@@ -1,4 +1,4 @@
-<h1>HELLO CRUD NODE JS</h1>
+<h1>Vejo Todos Os Produtos Disponíveis </h1>
 <hr>
 
 <header>
@@ -9,9 +9,49 @@
             <li><a href="./select">Select</a></li>
             <li><a href="./register">Registra-se</a></li>
             <li><a href="./login">Entrar</a></li>
+            <li><a href="./cadastro-barraca">Registre Sua Barraca</a></li>
         </ul>
     </nav>
 </header>
+<div class="__table">
+<table>
+    <caption>Seleção de Produtos Cadastrados</caption>
+
+    <thead>
+        <tr>
+            <td>Opções</td>
+            <td>Id</td>
+            <td>Barraca</td>
+            <td>Nome</td>
+            <td>Categoria</td>
+            <td>Preco</td>
+        </tr>
+    </thead>   
+
+    <tbody>
+        {{#data}}
+        <tr>
+            <td>
+                <a href="detalhes/{{ id }}" >Ver</a> 
+                
+            </td>
+            <td>{{ id }}</td>
+            <td>{{ nome_barraca}}</td>
+            <td>{{ nome_produto }}</td>
+            <td>{{ categoria }}</td>
+            <td>{{ preco }}</td>
+        </tr>
+        {{/data}}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Dev Isaque Menezes </td>
+        </tr>
+    </tfoot>
+
+</table>
+</div>
 
  <script src="/js/main.js"></script>
 

@@ -12,7 +12,7 @@
 
 <div class="__table">
 <table>
-    <caption>Seleção de Produtos Cadastrados</caption>
+    <caption>Seleção de Produtos Cadastrados Categorias</caption>
 
     <thead>
         <tr>
@@ -33,9 +33,9 @@
                 <a href="edit/{{ id }}">Update</a>
             </td>
             <td>{{ id }}</td>
-            <td>{{ fk_barraca }}<a href="./frutas">{{nome_barraca}}</a></td>
+            <td>{{ fk_barraca }}{{nome_barraca}}</a></td>
             <td>{{ nome_produto }}</td>
-            <td><a href="categoria/{{ categoria }}">{{ categoria }} </a></td>
+            <td>{{ categoria }}</td>
             <td>{{ preco }}</td>
             
         </tr>

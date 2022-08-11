@@ -69,3 +69,6 @@
 - [x] Update Product
 - [x] Delete Product
 
+### Usuário
+- [x] Create user
+

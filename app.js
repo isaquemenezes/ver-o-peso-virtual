@@ -22,8 +22,7 @@ const sql = mysql.createConnection({
 
 // Definir o motor de visualização para usar, neste caso
 app.engine(
-  "hbs", 
-  engine({
+  "hbs", engine({
     layoutsDir: __dirname + "/views/layouts",
     extname: "hbs",
   })
@@ -44,15 +43,18 @@ app.get("/register", function (req, res) {
   res.render("register");
 });
 app.post("/controllerRegister", urlEncodeParser, function (req, res) {
-  sql.query("INSERT INTO usuario values (?,?,?,?,?,?,?)", [
-    req.body.id,
-    req.body.nome,
-    req.body.fone,
-    req.body.email,
-    req.body.password,
-    req.body.user,
-    req.body.dateCreate,
-  ]);
+  sql.query("INSERT INTO usuario values (?,?,?,?,?,?,?,?,?)", 
+              [
+                req.body.id,
+                req.body.nome,
+                req.body.fone,
+                req.body.email,
+                req.body.nome_barraca,
+                req.body.localizacao_barraca,
+                req.body.password,
+                req.body.user,
+                req.body.dateCreate,
+              ]);
   res.render("controllerRegister");
 });
 

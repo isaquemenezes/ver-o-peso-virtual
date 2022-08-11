@@ -2,15 +2,33 @@ import React, {Component} from "react";
 import {Barraca, noVerOPeso, TipoBarraca} from "../lib/modelos";
 import CartaoBarraca from "./tiles/barraca";
 import {Link} from "react-router-dom";
-import {Button, TextField, Typography} from "@mui/material";
+import DoneIcon from '@mui/icons-material/Done';
+import {Button, Chip, TextField, Typography} from "@mui/material";
 
 type _Props = {};
-type _State = { termoBusca: string };
+type _State = { termoBusca: string, categorias: Set<TipoBarraca> };
+
 
 export default class ComponenteBarracas extends Component<_Props, _State> {
   constructor(props: _Props) {
     super(props);
-    this.state = {termoBusca: ''};
+    this.state = {termoBusca: '', categorias: new Set()};
+  }
+
+  private filtra(estado: _State, barracas: Barraca[]): Barraca[] {
+    let resultado = Array.from(barracas);
+    const termoBusca = estado.termoBusca.trim();
+    if (termoBusca) {
+      resultado = resultado
+          .filter(barraca => barraca.nome.toLowerCase().includes(termoBusca.toLowerCase()));
+    }
+
+    const categorias = estado.categorias;
+    if (categorias.size) {
+      resultado = resultado
+          .filter(barraca => Array.from(categorias).every((tipo) => barraca.tipos.includes(tipo)))
+    }
+    return resultado;
   }
 
   render() {
@@ -37,13 +55,10 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
         idFeirante: '0',
         nome: 'Box da Lúcia',
         localizacao: noVerOPeso({numero: '234'}),
-        tipos: [TipoBarraca.comidas],
+        tipos: [TipoBarraca.comidas, TipoBarraca.roupas],
       }
     ];
-    const barracasFiltradas = barracas
-        .filter((barraca) => barraca.nome.toLowerCase()
-            .includes(this.state.termoBusca.toLowerCase()));
-
+    const barracasFiltradas = this.filtra(this.state, barracas);
     const textoPesquisa = (() => {
       const contador = barracasFiltradas.length;
       const prefixo = contador == 0 ? 'Nenhuma' : `${contador}`;
@@ -65,9 +80,43 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
               style={{display: "flex", flex: "1", margin: "10px 20px"}}
               label="Pesquisar barraca"
               variant="outlined"
-              onChange={(e) => this.setState({termoBusca: e.target.value})}
+              onChange={(e) => {
+                this.setState({...this.state, termoBusca: e.target.value});
+              }}
           />
-          {this.state.termoBusca
+          <div style={{display: "flex", flexDirection: "row", padding: "0 20px"}}>
+            {Object.keys(TipoBarraca)
+                .filter((chave) => !isNaN(Number(TipoBarraca[chave as keyof typeof TipoBarraca])))
+                .map((chave) => TipoBarraca[chave as keyof typeof TipoBarraca])
+                .map((tipo) => {
+                  const legenda: string = (() => {
+                    switch (tipo) {
+                      case TipoBarraca.roupas:
+                        return 'Roupas';
+                      case TipoBarraca.artesanatos:
+                        return 'Artesanatos';
+                      case TipoBarraca.comidas:
+                        return 'Comidas';
+                    }
+                  })();
+                  const has = this.state.categorias.has(tipo);
+                  return <Chip
+                      style={{margin: "0 5px"}}
+                      label={legenda}
+                      icon={has ? <DoneIcon/> : undefined}
+                      onClick={(_) => {
+                        const categorias = new Set(this.state.categorias);
+                        if (categorias.has(tipo)) {
+                          categorias.delete(tipo);
+                        } else {
+                          categorias.add(tipo);
+                        }
+                        this.setState({...this.state, categorias});
+                      }}
+                      variant="outlined"/>;
+                })}
+          </div>
+          {barracas.length != barracasFiltradas.length
               ? <Typography
                   style={{margin: "0 20px"}}
                   component="div">{textoPesquisa}</Typography>

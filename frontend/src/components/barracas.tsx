@@ -1,18 +1,17 @@
 import React, {Component} from "react";
 import {Barraca, noVerOPeso, TipoBarraca} from "../lib/modelos";
 import CartaoBarraca from "./tiles/barraca";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import DoneIcon from '@mui/icons-material/Done';
 import {Button, Chip, TextField, Typography} from "@mui/material";
 
 type _Props = {};
-type _State = { termoBusca: string, categorias: Set<TipoBarraca> };
-
+type _State = { idBarraca: string | undefined, termoBusca: string, categorias: Set<TipoBarraca> };
 
 export default class ComponenteBarracas extends Component<_Props, _State> {
   constructor(props: _Props) {
     super(props);
-    this.state = {termoBusca: '', categorias: new Set()};
+    this.state = {idBarraca: undefined, termoBusca: '', categorias: new Set()};
   }
 
   private filtra(estado: _State, barracas: Barraca[]): Barraca[] {
@@ -34,34 +33,42 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
   render() {
     const barracas: Barraca[] = [
       {
+        id: '0',
         idFeirante: '0',
         nome: 'Barraca do Pedro',
         localizacao: noVerOPeso({numero: '84'}),
         tipos: [TipoBarraca.artesanatos],
       },
       {
+        id: '1',
         idFeirante: '0',
         nome: 'Boteco da Sandra',
         localizacao: noVerOPeso({numero: '27'}),
         tipos: [TipoBarraca.comidas],
       },
       {
+        id: '2',
         idFeirante: '0',
         nome: 'Barraca do Diego',
         localizacao: noVerOPeso({numero: '10'}),
         tipos: [TipoBarraca.roupas],
       },
       {
+        id: '3',
         idFeirante: '0',
         nome: 'Box da Lúcia',
         localizacao: noVerOPeso({numero: '234'}),
         tipos: [TipoBarraca.comidas, TipoBarraca.roupas],
       }
     ];
+    if (this.state.idBarraca) {
+      return <Navigate to={`/barraca/${this.state.idBarraca}`} />;
+    }
+
     const barracasFiltradas = this.filtra(this.state, barracas);
     const textoPesquisa = (() => {
       const contador = barracasFiltradas.length;
-      const prefixo = contador == 0 ? 'Nenhuma' : `${contador}`;
+      const prefixo = contador === 0 ? 'Nenhuma' : `${contador}`;
       const sufixo = contador < 2 ? '' : 's';
       return `${prefixo} barraca${sufixo} encontrada${sufixo}`;
     })();
@@ -123,7 +130,10 @@ export default class ComponenteBarracas extends Component<_Props, _State> {
               : null}
           <div>
             {barracasFiltradas
-                .map((barraca) => <CartaoBarraca barraca={barraca}/>)}
+                .map((barraca) => <CartaoBarraca
+                    barraca={barraca}
+                    aoVer={() => this.setState({...this.state, idBarraca: barraca.id})}
+                />)}
           </div>
         </div>
     );

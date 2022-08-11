@@ -1,16 +1,17 @@
 import {Barraca, TipoBarraca} from "../../lib/modelos";
 import React, {Component} from "react";
 import {Typography, Card, CardContent, CardActions, Button} from '@mui/material';
+import { Link } from "react-router-dom";
 
-type _Props = { barraca: Barraca };
+type _Props = { barraca: Barraca, aoVer: () => void };
 type _State = {};
 
 export default class CartaoBarraca extends Component<_Props, _State> {
   render() {
     const barraca: Barraca = this.props.barraca;
-    return <Card sx={{ minWidth: 275 }}>
+    return <Card sx={{minWidth: 275}}>
       <CardContent style={{textAlign: "left"}}>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
           Barraca
         </Typography>
         <Typography variant="h5" component="div">
@@ -31,7 +32,9 @@ export default class CartaoBarraca extends Component<_Props, _State> {
         })()}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Ver barraca</Button>
+        <Link to={`/barraca/${barraca.id}`} style={{textDecoration: 'none'}}>
+          <Button size="small">Ver barraca</Button>
+        </Link>
       </CardActions>
     </Card>;
   }

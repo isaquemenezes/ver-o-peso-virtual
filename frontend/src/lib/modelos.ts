@@ -21,6 +21,7 @@ export type Endereco = {
 };
 
 export type Feirante = {
+  id: Id,
   nome: string,
   contato: string,
   email: string | undefined,
@@ -33,6 +34,7 @@ export enum TipoBarraca {
 }
 
 export type Barraca = {
+  id: Id,
   nome: string,
   tipos: TipoBarraca[],
   localizacao: Endereco,

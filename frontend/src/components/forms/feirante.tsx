@@ -11,7 +11,6 @@ type _Params = WithRouterProps<_Props>;
 class FormularioFeirante extends React.Component<_Params, _State> {
   render() {
     const {match} = this.props;
-    console.log(match);
     return <Formulario id={match.params.id}/>;
   }
 }
@@ -24,12 +23,14 @@ class Formulario extends React.Component<_Props, _State> {
       <Cabecalho voltar titulo="Cadastrar feirante"/>
       <Formik<Feirante>
           initialValues={{
+            id: '',
             nome: '',
             email: '',
             contato: '',
           }}
           validate={(feirante) => {
             const errors: Record<keyof Feirante, string | undefined> = {
+              id: undefined,
               nome: undefined,
               email: undefined,
               contato: undefined,

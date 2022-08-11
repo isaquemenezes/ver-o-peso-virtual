@@ -4,6 +4,7 @@ import TelaBarracas from "./components/barracas";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import TelaAutenticacao from "./components/autenticacao";
 import FormularioFeirante from "./components/forms/feirante";
+import TelaBarraca from "./components/barraca";
 
 type _Props = {};
 type _State = {};
@@ -15,6 +16,7 @@ export default class App extends React.Component<_Props, _State> {
         <Route path="/" element={<TelaBarracas/>}/>
         <Route path="/login" element={<TelaAutenticacao/>}/>
         <Route path="/cadastro/:id" element={<FormularioFeirante/>}/>
+        <Route path="/barraca/:id" element={<TelaBarraca/>}/>
       </Routes>
     </BrowserRouter>;
   }

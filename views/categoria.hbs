@@ -9,44 +9,45 @@
         </ul>
     </nav>
 </header>
-
+<h1>Seleção de Produtos Cadastrados Categorias</h1> 
 <div class="__table">
-<table>
-    <caption>Seleção de Produtos Cadastrados Categorias</caption>
+    
+    <table>
+        
+        
+        <thead>
+            <tr>
+                <td>Opções</td>
+                <td>Id</td>
+                <td>Barraca</td>
+                <td>Nome Poduto</td>
+                <td>Categoria</td>
+                <td>Preco</td>
+            </tr>
+        </thead>   
 
-    <thead>
-        <tr>
-            <td>Opções</td>
-            <td>Id</td>
-            <td>Barraca</td>
-            <td>Nome</td>
-            <td>Categoria</td>
-            <td>Preco</td>
-        </tr>
-    </thead>   
+        <tbody>
+            {{#data}}
+            <tr>
+                <td>
+                    <a href="del/{{ id }}" class="deletar">Del</a> | 
+                    <a href="edit/{{ id }}">Update</a>
+                </td>
+                <td>{{ id }}</td>
+                <td>{{fk_nome_barraca}}</a></td>
+                <td>{{ nome_produto }}</td>
+                <td>{{ categoria }}</td>
+                <td>{{ preco }}</td>
+                
+            </tr>
+            {{/data}}
+        </tbody>
 
-    <tbody>
-        {{#data}}
-        <tr>
-            <td>
-                <a href="del/{{ id }}" class="deletar">Del</a> | 
-                <a href="edit/{{ id }}">Update</a>
-            </td>
-            <td>{{ id }}</td>
-            <td>{{ fk_barraca }}{{nome_barraca}}</a></td>
-            <td>{{ nome_produto }}</td>
-            <td>{{ categoria }}</td>
-            <td>{{ preco }}</td>
-            
-        </tr>
-        {{/data}}
-    </tbody>
+        <tfoot>
+            <tr>
+                <td>Dev Isaque Menezes </td>
+            </tr>
+        </tfoot>
 
-    <tfoot>
-        <tr>
-            <td>Dev Isaque Menezes </td>
-        </tr>
-    </tfoot>
-
-</table>
+    </table>
 </div>

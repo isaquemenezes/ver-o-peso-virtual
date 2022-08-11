@@ -61,3 +61,11 @@
 
 ### camada de aplicação do dados 
 `npm install --save body-parser`
+
+# Testes :
+### CRUD do produto:
+- [x] Create Produt
+- [x] Read Product
+- [x] Update Product
+- [x] Delete Product
+

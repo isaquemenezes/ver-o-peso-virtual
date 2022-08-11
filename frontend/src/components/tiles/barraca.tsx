@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {Typography, Card, CardContent, CardActions, Button} from '@mui/material';
 import { Link } from "react-router-dom";
 
-type _Props = { barraca: Barraca, aoVer: () => void };
+type _Props = { id: string, barraca: Barraca };
 type _State = {};
 
 export default class CartaoBarraca extends Component<_Props, _State> {
@@ -27,12 +27,13 @@ export default class CartaoBarraca extends Component<_Props, _State> {
               case TipoBarraca.roupas:
                 return 'roupas';
             }
+            return '';
           });
           return <p>Inclui {labels.join(', ')}</p>;
         })()}</Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/barraca/${barraca.id}`} style={{textDecoration: 'none'}}>
+        <Link to={`/barraca/${this.props.id}`} style={{textDecoration: 'none'}}>
           <Button size="small">Ver barraca</Button>
         </Link>
       </CardActions>

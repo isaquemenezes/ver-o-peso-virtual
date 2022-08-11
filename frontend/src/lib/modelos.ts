@@ -34,7 +34,6 @@ export enum TipoBarraca {
 }
 
 export type Barraca = {
-  id: Id,
   nome: string,
   tipos: TipoBarraca[],
   localizacao: Endereco,

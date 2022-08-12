@@ -1,8 +1,13 @@
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import "./feirante.css";
+import {ErrorMessage, Form, Field, Formik} from "formik";
 import React from "react";
-import {Feirante} from "../../lib/modelos";
+import {Barraca, TipoBarraca} from "../../lib/modelos";
+import * as Yup from "yup";
 import {withRouter, WithRouterProps} from "../../lib/withRouter";
 import Cabecalho from "../tiles/cabecalho";
+import {Button, Checkbox, FormControlLabel, FormGroup, Stack, TextField, Typography} from "@mui/material";
+import {FieldProps} from "formik/dist/Field";
+import container, {constantes, interfaces} from "../../lib/ioc";
 
 type _Props = { id: string | undefined };
 type _State = {};
@@ -20,49 +25,106 @@ export default withRouter(FormularioFeirante);
 class Formulario extends React.Component<_Props, _State> {
   render() {
     return <div>
-      <Cabecalho voltar titulo="Cadastrar feirante"/>
-      <Formik<Feirante>
+      <Cabecalho voltar titulo="Cadastrar barraca"/>
+      <Formik<Barraca>
           initialValues={{
-            id: '',
             nome: '',
-            email: '',
-            contato: '',
+            localizacao: {
+              estado: 'Pará',
+              cidade: 'Belém',
+              bairro: '',
+              logradouro: '',
+              complemento: '',
+              numero: '',
+            },
+            tipos: [],
+            idFeirante: '0',
           }}
-          validate={(feirante) => {
-            const errors: Record<keyof Feirante, string | undefined> = {
-              id: undefined,
-              nome: undefined,
-              email: undefined,
-              contato: undefined,
-            };
-            if (!feirante.nome) {
-              errors.nome = 'Insira este campo';
-            }
-            if (!feirante.email) {
-              errors.email = 'Insira este campo';
-            }
-            if (!feirante.contato) {
-              errors.contato = 'Insira este campo';
-            }
-            return errors;
-          }}
-          onSubmit={(feirante, {setSubmitting}) => {
-            alert(feirante.nome);
-            setSubmitting(false);
+          validationSchema={Yup.object({
+            nome: Yup.string().required('Insira este campo.'),
+            tipos: Yup.array().min(1, 'Selecione uma categoria.'),
+            localizacao: Yup.object({
+              logradouro: Yup.string().required('Insira este campo.'),
+              complemento: Yup.string().required('Insira este campo.'),
+              numero: Yup.string().required('Insira este campo.'),
+              bairro: Yup.string().required('Insira este campo.'),
+              cidade: Yup.string().required('Insira este campo.'),
+              estado: Yup.string().required('Insira este campo.'),
+            }),
+          })}
+          onSubmit={(barraca, {setSubmitting}) => {
+            container
+                .get<interfaces.Database>(constantes.SERVICO_DATABASE)
+                .barracas
+                .create(barraca)
+                .then(_ => {
+                  setSubmitting(false);
+                  alert('Barraca cadastrada com sucesso!');
+                  window.history.back();
+            })
+
           }}>
         {({isSubmitting}) => (
-            <Form>
-              <Field type="text" name="nome"/>
-              <ErrorMessage name="email" component="div"/>
-              <Field type="email" name="email"/>
-              <ErrorMessage name="email" component="div"/>
-              <Field name="contato"/>
-              <button type="submit" disabled={isSubmitting}>
-                Enviar
-              </button>
+            <Form style={{margin: "0 30px"}}>
+              <Stack spacing="20px">
+                <Stack>
+                  <CampoTexto chave="nome" label="Nome da barraca"/>
+                </Stack>
+                <Stack spacing="15px">
+                  <Typography variant="h5">Endereço</Typography>
+                  <CampoTexto chave="localizacao.complemento" label="Complemento"/>
+                  <CampoTexto chave="localizacao.logradouro" label="Logradouro"/>
+                  <CampoTexto chave="localizacao.numero" label="Número"/>
+                  <CampoTexto chave="localizacao.bairro" label="Bairro"/>
+                  <CampoTexto chave="localizacao.cidade" label="Cidade"/>
+                  <CampoTexto chave="localizacao.estado" label="Estado"/>
+                </Stack>
+                <Stack>
+                  <Typography variant="h5">Categorias</Typography>
+                  <FormGroup>
+                    {Object.keys(TipoBarraca)
+                          .filter((chave) => !isNaN(Number(TipoBarraca[chave as keyof typeof TipoBarraca])))
+                          .map((chave) => TipoBarraca[chave as keyof typeof TipoBarraca])
+                          .map((tipo) => {
+                            const legenda: string = (() => {
+                              switch (tipo) {
+                                case TipoBarraca.roupas:
+                                  return 'Roupas';
+                                case TipoBarraca.artesanatos:
+                                  return 'Artesanatos';
+                                case TipoBarraca.comidas:
+                                  return 'Comidas';
+                              }
+                            })();
+                            return <FormControlLabel control={<CampoSelecao chave="tipos"/>} label={legenda}/>;
+                          })}
+                  </FormGroup>
+                  <ErrorMessage name="tipos"/>
+                </Stack>
+                <Button type="submit" variant="contained">Cadastrar</Button>
+              </Stack>
             </Form>
         )}
       </Formik>
     </div>;
+  }
+}
+
+class CampoTexto extends React.Component<{ chave: string, label: string }, {}> {
+  render() {
+    return <Stack>
+      <Field name={this.props.chave}>
+        {({field}: FieldProps) => <TextField type="text" name={this.props.chave} label={this.props.label} defaultValue={field.value} onChange={(e) => field.onChange(e)}/>}
+      </Field>
+      <ErrorMessage name={this.props.chave} component="div"/>
+    </Stack>;
+  }
+}
+
+class CampoSelecao extends React.Component<{chave: string}, {}> {
+  render() {
+    return <Field name={this.props.chave}>
+      {({field}: FieldProps) => <Checkbox name="tipos" checked={field.checked} onChange={(e) => field.onChange(e)}/>}
+    </Field>
   }
 }

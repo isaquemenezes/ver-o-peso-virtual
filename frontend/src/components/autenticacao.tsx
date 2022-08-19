@@ -22,15 +22,18 @@ export default class ComponenteCadastro extends Component<_Props, _State> {
             variant="outlined"
         />
         <div style={{display: "flex", margin: "20px"}}>
+          
           <Button
               style={{padding: "10px 30px"}}
               variant="contained">Entrar</Button>
           <div style={{display: "flex", flexGrow: 1}}/>
+          
           <Link to="/cadastro/0">
             <Button
                 style={{padding: "10px 30px"}}
                 variant="outlined">Não tenho cadastro</Button>
           </Link>
+
         </div>
       </div>
     </div>;
